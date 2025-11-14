@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path("api/communities/", include("apps.communities.urls", namespace="communities")),
     path("admin/", admin.site.urls),
     #just  created for  the testing okay
     path("health/", health, name="health"),
