@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     "rest_framework",
 
     "core",
-    "apps.accounts",
+    "apps.accounts.apps.AppsAccountsConfig",
     "apps.profiles",
     "apps.friendships",
     "apps.feed",
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
 # Your custom user model
 AUTH_USER_MODEL = "apps_accounts.User"
+
 
 
 MIDDLEWARE = [

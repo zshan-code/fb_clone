@@ -13,7 +13,7 @@ from .serializers import RegisterSerializer, LoginSerializer, ProfileSerializer,
 #things imported for the profile watching
 from rest_framework import generics, permissions
 from .serializers import ProfileSerializer
-from .models import Profile
+from apps.profiles.models import Profile
 
 #view for the register
 class RegisterView(APIView):

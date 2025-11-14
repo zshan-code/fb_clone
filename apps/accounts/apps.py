@@ -6,5 +6,4 @@ class AppsAccountsConfig(AppConfig):
     label = "apps_accounts"
 
     def ready(self):
-        # import signals so they are registered
         import apps.accounts.signals  # noqa: F401

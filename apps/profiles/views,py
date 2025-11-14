@@ -1,0 +1,16 @@
+import profile
+from urllib import request
+from friendships.models import Friendship, FriendRequest
+
+# inside profile view
+owner = profile.user
+if request.user == owner:
+    relation = "self"
+elif Friendship.objects.filter(user=request.user, friend=owner).exists():
+    relation = "friends"
+elif FriendRequest.objects.filter(from_user=request.user, to_user=owner).exists():
+    relation = "outgoing_request"
+elif FriendRequest.objects.filter(from_user=owner, to_user=request.user).exists():
+    relation = "incoming_request"
+else:
+    relation = "not_friends"

@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate, password_validation
 from datetime import date
-from .models import User, Profile
+from .models import User
+from apps.profiles.models import Profile
 
 #controlling the functions of the registeruser
 class RegisterSerializer(serializers.ModelSerializer):
