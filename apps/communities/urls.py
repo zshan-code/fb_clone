@@ -1,23 +1,34 @@
 from django.urls import path
 from .views import (
-    CommunityListCreateView, CommunityRetrieveUpdateDestroyView,
-    JoinCommunityView, LeaveCommunityView,
-    CommunityPostListCreateView, CommunityCommentListCreateView,
-    CommunityEventListCreateView, CommunityPollListCreateView
+    CommunityListCreateView, CommunityDetailView,
+    MembershipRequestView, AcceptRejectMembershipView, RemoveMemberView,
+    PostListCreateView, PostDetailView, PinPostView, SharePostView, LikePostView,
+    EventListCreateView, EventDetailView,
+    PollListCreateView, PollOptionVoteView
 )
 
-app_name = "communities"
-
 urlpatterns = [
-    path('', CommunityListCreateView.as_view(), name='community_list_create'),
-    path('<int:pk>/', CommunityRetrieveUpdateDestroyView.as_view(), name='community_detail'),
-    
-    path('join/', JoinCommunityView.as_view(), name='join_community'),
-    path('leave/<int:community_id>/', LeaveCommunityView.as_view(), name='leave_community'),
-    
-    path('<int:community_id>/posts/', CommunityPostListCreateView.as_view(), name='community_posts'),
-    path('posts/<int:post_id>/comments/', CommunityCommentListCreateView.as_view(), name='community_comments'),
-    
-    path('<int:community_id>/events/', CommunityEventListCreateView.as_view(), name='community_events'),
-    path('<int:community_id>/polls/', CommunityPollListCreateView.as_view(), name='community_polls'),
+    # Communities
+    path('communities/', CommunityListCreateView.as_view(), name='community_list_create'),
+    path('communities/<int:pk>/', CommunityDetailView.as_view(), name='community_detail'),
+
+    # Membership
+    path('members/join/', MembershipRequestView.as_view(), name='join_community'),
+    path('members/<int:membership_id>/action/', AcceptRejectMembershipView.as_view(), name='membership_action'),
+    path('members/<int:pk>/remove/', RemoveMemberView.as_view(), name='remove_member'),
+
+    # Posts
+    path('posts/', PostListCreateView.as_view(), name='post_list_create'),
+    path('posts/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
+    path('posts/<int:pk>/pin/', PinPostView.as_view(), name='pin_post'),
+    path('posts/share/', SharePostView.as_view(), name='share_post'),
+    path('posts/<int:pk>/like/', LikePostView.as_view(), name='like_post'),
+
+    # Events
+    path('events/', EventListCreateView.as_view(), name='event_list_create'),
+    path('events/<int:pk>/', EventDetailView.as_view(), name='event_detail'),
+
+    # Polls
+    path('polls/', PollListCreateView.as_view(), name='poll_list_create'),
+    path('polls/<int:poll_id>/vote/<int:option_id>/', PollOptionVoteView.as_view(), name='poll_vote'),
 ]
