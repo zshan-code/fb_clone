@@ -21,5 +21,5 @@ urlpatterns = [
     path("api/communities/", include("apps.communities.urls", namespace="communities")),
     #for t he calling of the communities post  (like, unlike etc)
     path("api/posts/", include("apps.communities.posts_urls")),  
-
+ path("api/chat/", include("apps.chat.urls", namespace="chat")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
